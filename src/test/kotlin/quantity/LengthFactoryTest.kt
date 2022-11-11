@@ -10,17 +10,17 @@ internal class LengthFactoryTest {
 
     @Test
     fun `1 dot cm returns length of 1cm`() {
-        1.0.cm shouldBe Length(1.0, CM)
+        1.0.cm shouldBe Quantity(1.0, CM)
     }
 
     @Test
     fun `1 dot m returns length of 1m`() {
-        1.0.m shouldBe Length(1.0, M)
+        1.0.m shouldBe Quantity(1.0, M)
     }
 
     @Test
     fun `1 dot km returns length of 1km`() {
-        1.0.km shouldBe Length(1.0, KM)
+        1.0.km shouldBe Quantity(1.0, KM)
     }
 
 }

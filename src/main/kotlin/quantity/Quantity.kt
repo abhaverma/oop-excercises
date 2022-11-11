@@ -1,19 +1,19 @@
 package quantity
 
 
-data class Length(val amount: Double, val unit: LengthUnit) {
-    operator fun plus(other: Length): Length {
+data class Quantity<T: Convertible>(val amount: Double, val unit: T) {
+    operator fun plus(other: Quantity<T>): Quantity<T> {
         return copy(amount = amount + other.amountIn(unit))
     }
 
-    operator fun minus(other: Length): Length {
+    operator fun minus(other: Quantity<T>): Quantity<T> {
         return copy(amount = amount - other.amountIn(unit))
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
-        other as Length
+        other as Quantity<T>
 
         return amount == other.amountIn(unit)
     }
@@ -24,8 +24,12 @@ data class Length(val amount: Double, val unit: LengthUnit) {
         return result
     }
 
-    private fun amountIn(otherUnit: LengthUnit): Double {
+    private fun amountIn(otherUnit: T): Double {
         return if (unit == otherUnit) amount else amount * unit.conversionFactor(otherUnit)
     }
 
+}
+
+interface Convertible {
+    fun <T> conversionFactor(other: T): Double
 }

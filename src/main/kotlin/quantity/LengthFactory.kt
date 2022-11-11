@@ -4,18 +4,18 @@ import quantity.LengthUnit.CM
 import quantity.LengthUnit.KM
 import quantity.LengthUnit.M
 
-val Double.cm: Length
+val Double.cm: Quantity<LengthUnit>
     get() {
-        return Length(this, CM)
+        return Quantity(this, CM)
     }
 
-val Double.m: Length
+val Double.m: Quantity<LengthUnit>
     get() {
-        return Length(this, M)
+        return Quantity(this, M)
     }
 
 
-val Double.km: Length
+val Double.km: Quantity<LengthUnit>
     get() {
-        return Length(this, KM)
+        return Quantity(this, KM)
     }
