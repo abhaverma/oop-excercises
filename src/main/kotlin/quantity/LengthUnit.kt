@@ -13,11 +13,11 @@ enum class LengthUnit {
     CM, M, KM
 }
 
-fun LengthUnit.conversionFactor(otherUnit: LengthUnit): Double {
-    if (this == KM && otherUnit == M) return KM_TO_M_FACTOR
-    if (this == KM && otherUnit == CM) return KM_TO_CM_FACTOR
-    if (this == M && otherUnit == CM) return M_TO_CM_FACTOR
-    if (this == CM && otherUnit == KM) return 1 / KM_TO_CM_FACTOR
+fun LengthUnit.conversionFactor(other: LengthUnit): Double {
+    if (this == KM && other == M) return KM_TO_M_FACTOR
+    if (this == KM && other == CM) return KM_TO_CM_FACTOR
+    if (this == M && other == CM) return M_TO_CM_FACTOR
+    if (this == CM && other == KM) return 1 / KM_TO_CM_FACTOR
     if (this == CM) return 1 / M_TO_CM_FACTOR
     return 1 / KM_TO_M_FACTOR
 }
