@@ -1,7 +1,13 @@
 package quantity
 
 
-class Length(val amount: Double, val unit: LengthUnit) {
+data class Length(val amount: Double, val unit: LengthUnit) {
+    operator fun plus(other: Length): Length {
+        if (unit == other.unit) return copy(amount = amount + other.amount)
+        val conversionFactor = other.unit.conversionFactor(unit)
+        val convertedAmount = other.amount * conversionFactor
+        return copy(amount = amount + convertedAmount)
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -27,8 +33,4 @@ class Length(val amount: Double, val unit: LengthUnit) {
         return result
     }
 
-    override fun toString(): String {
-        return "Length(amount=$amount, unit='$unit')"
-    }
 }
-
