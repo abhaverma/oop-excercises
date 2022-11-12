@@ -1,7 +1,7 @@
 package quantity
 
 
-data class Quantity<T: Convertible>(val amount: Double, val unit: T) {
+data class Quantity<T: Convertible<T>>(val amount: Double, val unit: T) {
     operator fun plus(other: Quantity<T>): Quantity<T> {
         return copy(amount = amount + other.amountIn(unit))
     }
@@ -28,8 +28,4 @@ data class Quantity<T: Convertible>(val amount: Double, val unit: T) {
         return if (unit == otherUnit) amount else amount * unit.conversionFactor(otherUnit)
     }
 
-}
-
-interface Convertible {
-    fun <T> conversionFactor(other: T): Double
 }
