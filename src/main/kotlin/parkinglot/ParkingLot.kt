@@ -1,9 +1,10 @@
 package parkinglot
 
-class ParkingLot {
+class ParkingLot private constructor(private val capacity: Int) {
     private val cars = mutableListOf<Car>()
 
     fun park(car: Car) {
+        if (capacity == parkedCount()) return
         cars.add(car)
     }
 
@@ -17,6 +18,17 @@ class ParkingLot {
 
     fun unpark(car: Car) {
         cars.remove(car)
+    }
+
+    fun isFull(): Boolean {
+        return capacity == parkedCount()
+    }
+
+    companion object {
+        fun withCapacity(capacity: Int): ParkingLot {
+            if (capacity <= 0) throw IllegalArgumentException()
+            return ParkingLot(capacity)
+        }
     }
 
 }
