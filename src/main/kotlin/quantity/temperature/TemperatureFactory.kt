@@ -1,18 +1,16 @@
 package quantity.temperature
 
-import quantity.Quantity
-
-val Double.C: Quantity<TemperatureUnit>
+val Double.C: Temperature
     get() {
-        return Quantity(this, TemperatureUnit.C)
+        return Temperature(this, TemperatureUnit.C)
     }
 
-val Double.F: Quantity<TemperatureUnit>
+val Double.F: Temperature
     get() {
-        return Quantity(this, TemperatureUnit.F)
+        return Temperature(this, TemperatureUnit.F)
     }
 
-val Double.K: Quantity<TemperatureUnit>
+val Double.K: Temperature
     get() {
-        return Quantity(this, TemperatureUnit.K)
+        return Temperature(this, TemperatureUnit.K)
     }
