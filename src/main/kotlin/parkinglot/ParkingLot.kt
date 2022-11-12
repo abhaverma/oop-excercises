@@ -15,4 +15,8 @@ class ParkingLot {
         return cars.count()
     }
 
+    fun unpark(car: Car) {
+        cars.remove(car)
+    }
+
 }
