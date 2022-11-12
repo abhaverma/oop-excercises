@@ -1,4 +1,4 @@
-package quantity
+package quantity.weight
 
 import io.kotlintest.shouldBe
 import org.junit.jupiter.api.Test

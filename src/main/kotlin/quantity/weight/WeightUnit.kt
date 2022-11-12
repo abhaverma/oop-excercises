@@ -1,4 +1,6 @@
-package quantity
+package quantity.weight
+
+import quantity.Convertible
 
 private const val KG_TO_G_FACTOR = 1000.0
 

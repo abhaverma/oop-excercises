@@ -1,4 +1,4 @@
-package quantity
+package quantity.length
 
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldNotBe

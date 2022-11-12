@@ -1,12 +1,10 @@
-package quantity
+package quantity.weight
 
 import io.kotlintest.shouldBe
 import org.junit.jupiter.api.Test
-import quantity.LengthUnit.CM
-import quantity.LengthUnit.KM
-import quantity.LengthUnit.M
-import quantity.WeightUnit.G
-import quantity.WeightUnit.KG
+import quantity.Quantity
+import quantity.weight.WeightUnit.G
+import quantity.weight.WeightUnit.KG
 
 class WeightFactoryTest {
 

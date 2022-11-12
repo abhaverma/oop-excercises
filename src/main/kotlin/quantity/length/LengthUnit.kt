@@ -1,4 +1,6 @@
-package quantity
+package quantity.length
+
+import quantity.Convertible
 
 private const val M_TO_CM_FACTOR = 100.0
 private const val KM_TO_M_FACTOR = 1000.0

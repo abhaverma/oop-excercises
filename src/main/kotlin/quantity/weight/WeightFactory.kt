@@ -1,7 +1,8 @@
-package quantity
+package quantity.weight
 
-import quantity.WeightUnit.G
-import quantity.WeightUnit.KG
+import quantity.Quantity
+import quantity.weight.WeightUnit.G
+import quantity.weight.WeightUnit.KG
 
 val Double.kg: Quantity<WeightUnit>
     get() {

@@ -1,8 +1,9 @@
-package quantity
+package quantity.length
 
-import quantity.LengthUnit.CM
-import quantity.LengthUnit.KM
-import quantity.LengthUnit.M
+import quantity.Quantity
+import quantity.length.LengthUnit.CM
+import quantity.length.LengthUnit.KM
+import quantity.length.LengthUnit.M
 
 val Double.cm: Quantity<LengthUnit>
     get() {
