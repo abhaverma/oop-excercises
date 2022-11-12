@@ -14,7 +14,7 @@ class WeightFactoryTest {
     }
 
     @Test
-    fun `1 dot kg returns length of 1kg`() {
+    fun `1 dot kg returns weight of 1kg`() {
         1.0.kg shouldBe Quantity(1.0, KG)
     }
 
