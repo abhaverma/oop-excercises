@@ -11,4 +11,8 @@ class ParkingLot {
         return cars.contains(car)
     }
 
+    fun parkedCount(): Int {
+        return cars.count()
+    }
+
 }

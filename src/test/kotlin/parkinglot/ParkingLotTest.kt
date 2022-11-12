@@ -45,4 +45,30 @@ class ParkingLotTest {
             isParkedCar2 shouldBe true
         }
     }
+
+    @Test
+    fun `parked count returns 1 when 1 car is parked`() {
+        val car = Car("Honda City", "2019")
+        val parkingLot = ParkingLot()
+        parkingLot.park(car)
+
+        val count = parkingLot.parkedCount()
+
+        count shouldBe 1
+    }
+
+    @Test
+    fun `parked count returns 3 when 3 cars are parked`() {
+        val car1 = Car("Honda City", "2019")
+        val car2 = Car("Tata Tigor", "2022")
+        val car3 = Car("Hyundai i20", "2020")
+        val parkingLot = ParkingLot()
+        parkingLot.park(car1)
+        parkingLot.park(car2)
+        parkingLot.park(car3)
+
+        val count = parkingLot.parkedCount()
+
+        count shouldBe 3
+    }
 }
