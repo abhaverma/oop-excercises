@@ -12,7 +12,7 @@ class ParkingLotTest {
     inner class Capacity {
         @Test
         fun `returns true when capacity is full`() {
-            val car = Car("Honda City", "2019")
+            val car = car()
             val parkingLot = parkingLot(1)
             parkingLot.park(car)
 
@@ -23,7 +23,7 @@ class ParkingLotTest {
 
         @Test
         fun `returns false when capacity is not full`() {
-            val car = Car("Honda City", "2019")
+            val car = car()
             val parkingLot = parkingLot()
             parkingLot.park(car)
 
@@ -35,8 +35,8 @@ class ParkingLotTest {
         @Test
         fun `does not park when parking lot is full`() {
             val parkingLot = parkingLot(1)
-            val car1 = Car("Honda City", "2019")
-            val car2 = Car("Tata Tigor", "2022")
+            val car1 = car()
+            val car2 = car()
             parkingLot.park(car1)
             parkingLot.park(car2)
 
@@ -62,7 +62,7 @@ class ParkingLotTest {
 
         @Test
         fun `parks a car in parking lot`() {
-            val car = Car("Honda City", "2019")
+            val car = car()
             val parkingLot = parkingLot()
             parkingLot.park(car)
 
@@ -73,8 +73,8 @@ class ParkingLotTest {
 
         @Test
         fun `returns false when given car is not parked`() {
-            val car = Car("Honda City", "2019")
-            val otherCar = Car("Tata Tigor", "2022")
+            val car = car()
+            val otherCar = car()
             val parkingLot = parkingLot()
             parkingLot.park(car)
 
@@ -85,8 +85,8 @@ class ParkingLotTest {
 
         @Test
         fun `parks more than one car`() {
-            val car1 = Car("Honda City", "2019")
-            val car2 = Car("Tata Tigor", "2022")
+            val car1 = car()
+            val car2 = car()
             val parkingLot = parkingLot()
             parkingLot.park(car1)
             parkingLot.park(car2)
@@ -102,7 +102,7 @@ class ParkingLotTest {
 
         @Test
         fun `parked count returns 1 when 1 car is parked`() {
-            val car = Car("Honda City", "2019")
+            val car = car()
             val parkingLot = parkingLot()
             parkingLot.park(car)
 
@@ -113,9 +113,9 @@ class ParkingLotTest {
 
         @Test
         fun `parked count returns 3 when 3 cars are parked`() {
-            val car1 = Car("Honda City", "2019")
-            val car2 = Car("Tata Tigor", "2022")
-            val car3 = Car("Hyundai i20", "2020")
+            val car1 = car()
+            val car2 = car()
+            val car3 = car()
             val parkingLot = parkingLot()
             parkingLot.park(car1)
             parkingLot.park(car2)
@@ -132,8 +132,8 @@ class ParkingLotTest {
 
         @Test
         fun `parked count reduces when a car is un parked`() {
-            val car1 = Car("Honda City", "2019")
-            val car2 = Car("Tata Tigor", "2022")
+            val car1 = car()
+            val car2 = car()
             val parkingLot = parkingLot()
             parkingLot.park(car1)
             parkingLot.park(car2)
@@ -145,7 +145,7 @@ class ParkingLotTest {
 
         @Test
         fun `returns false when given car is un parked`() {
-            val car = Car("Honda City", "2019")
+            val car = car()
             val parkingLot = parkingLot()
             parkingLot.park(car)
 
@@ -158,8 +158,8 @@ class ParkingLotTest {
 
         @Test
         fun `unparks more than 1 car`() {
-            val car1 = Car("Honda City", "2019")
-            val car2 = Car("Tata Tigor", "2022")
+            val car1 = car()
+            val car2 = car()
             val parkingLot = parkingLot()
             parkingLot.park(car1)
             parkingLot.park(car2)
