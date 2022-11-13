@@ -14,6 +14,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     testImplementation("io.kotlintest:kotlintest-assertions:3.4.2")
+    testImplementation ("io.mockk:mockk:1.13.2")
 }
 
 tasks.test {

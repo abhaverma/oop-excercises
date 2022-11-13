@@ -2,9 +2,8 @@ package parkinglot
 
 fun parkingLot(
     capacity: Int = 10,
-    owner: ParkingLotOwner = ParkingLotOwner.with(""),
-    cop: RoadTrafficCop = RoadTrafficCop.with("")
+    observers: List<ParkingLotFullObserver> = emptyList()
 ) =
-    ParkingLot.with(capacity, owner, cop)
+    ParkingLot.with(capacity, observers)
 
 fun car(model: String = "", make: String = "") = Car(model, make)

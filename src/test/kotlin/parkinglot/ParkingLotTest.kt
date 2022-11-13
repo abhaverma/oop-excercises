@@ -2,6 +2,8 @@ package parkinglot
 
 import io.kotlintest.assertSoftly
 import io.kotlintest.shouldBe
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -25,49 +27,31 @@ class ParkingLotTest {
         }
 
         @Test
-        fun `notifies owner when parking lot becomes full`() {
-            val owner = ParkingLotOwner.with("")
-            val parkingLot = parkingLot(capacity = 1, owner = owner)
+        fun `notifies observers when parking lot becomes full`() {
+            val observer1 = mockk<ParkingLotFullObserver>(relaxed = true)
+            val observer2 = mockk<ParkingLotFullObserver>(relaxed = true)
+            val parkingLot = parkingLot(capacity = 1, observers = listOf(observer1, observer2))
             val car = car()
 
             parkingLot.park(car)
 
-            owner.isParkingLotFull() shouldBe true
+            verify { observer1.notifyParkingLotFull() }
+            verify { observer2.notifyParkingLotFull() }
         }
 
-        @Test
-        fun `notifies road traffic cop when parking lot becomes full`() {
-            val cop = RoadTrafficCop.with("")
-            val parkingLot = parkingLot(capacity = 1, cop = cop)
-            val car = car()
-
-            parkingLot.park(car)
-
-            cop.isParkingLotFull() shouldBe true
-        }
 
         @Test
-        fun `withdraws notice to owner when parking lot has space available`() {
-            val owner = ParkingLotOwner.with("")
-            val parkingLot = parkingLot(capacity = 1, owner = owner)
+        fun `withdraws notice to observers when parking lot has space available`() {
+            val observer1 = mockk<ParkingLotFullObserver>(relaxed = true)
+            val observer2 = mockk<ParkingLotFullObserver>(relaxed = true)
+            val parkingLot = parkingLot(capacity = 1, observers = listOf(observer1, observer2))
             val car = car()
 
             parkingLot.park(car)
             parkingLot.unpark(car)
 
-            owner.isParkingLotFull() shouldBe false
-        }
-
-        @Test
-        fun `withdraws notice to road traffic cop when parking lot has space available`() {
-            val cop = RoadTrafficCop.with("")
-            val parkingLot = parkingLot(capacity = 1, cop = cop)
-            val car = car()
-
-            parkingLot.park(car)
-            parkingLot.unpark(car)
-
-            cop.isParkingLotFull() shouldBe false
+            verify { observer1.withdrawParkingLotFull() }
+            verify { observer2.withdrawParkingLotFull() }
         }
 
         @Test

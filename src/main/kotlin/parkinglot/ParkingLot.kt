@@ -2,8 +2,7 @@ package parkinglot
 
 class ParkingLot private constructor(
     private val capacity: Int,
-    private val owner: ParkingLotOwner,
-    private val cop: RoadTrafficCop
+    private val observers: List<ParkingLotFullObserver>,
 ) {
     private val cars = mutableListOf<Car>()
 
@@ -11,8 +10,7 @@ class ParkingLot private constructor(
         if (isParked(car) || isFull()) return
         cars.add(car)
         if (isFull()) {
-            owner.notifyParkingLotFull()
-            cop.notifyParkingLotFull()
+            observers.map { it.notifyParkingLotFull() }
         }
     }
 
@@ -26,8 +24,7 @@ class ParkingLot private constructor(
 
     fun unpark(car: Car) {
         if (isFull()) {
-            owner.withdrawParkingLotFull()
-            cop.withdrawParkingLotFull()
+            observers.map { it.withdrawParkingLotFull() }
         }
         cars.remove(car)
     }
@@ -37,9 +34,9 @@ class ParkingLot private constructor(
     }
 
     companion object {
-        fun with(capacity: Int, owner: ParkingLotOwner, cop: RoadTrafficCop): ParkingLot {
+        fun with(capacity: Int, observers: List<ParkingLotFullObserver>): ParkingLot {
             if (capacity <= 0) throw IllegalArgumentException()
-            return ParkingLot(capacity, owner, cop)
+            return ParkingLot(capacity, observers)
         }
     }
 

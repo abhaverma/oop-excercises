@@ -1,17 +1,17 @@
 package parkinglot
 
-class ParkingLotOwner private constructor(private val name: String, private var parkingLotFull: Boolean) {
+class ParkingLotOwner private constructor(private val name: String, private var parkingLotFull: Boolean) :
+    ParkingLotFullObserver {
 
-
-    fun isParkingLotFull(): Boolean {
+    override fun isParkingLotFull(): Boolean {
         return parkingLotFull
     }
 
-    fun notifyParkingLotFull() {
+    override fun notifyParkingLotFull() {
         parkingLotFull = true
     }
 
-    fun withdrawParkingLotFull() {
+    override fun withdrawParkingLotFull() {
         parkingLotFull = false
     }
 
