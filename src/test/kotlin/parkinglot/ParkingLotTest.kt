@@ -10,27 +10,6 @@ class ParkingLotTest {
 
     @Nested
     inner class Capacity {
-        @Test
-        fun `returns true when capacity is full`() {
-            val car = car()
-            val parkingLot = parkingLot(1)
-            parkingLot.park(car)
-
-            val isFull = parkingLot.isFull()
-
-            isFull shouldBe true
-        }
-
-        @Test
-        fun `returns false when capacity is not full`() {
-            val car = car()
-            val parkingLot = parkingLot()
-            parkingLot.park(car)
-
-            val isFull = parkingLot.isFull()
-
-            isFull shouldBe false
-        }
 
         @Test
         fun `does not park when parking lot is full`() {
@@ -43,6 +22,29 @@ class ParkingLotTest {
             val isCar2Parked = parkingLot.isParked(car2)
 
             isCar2Parked shouldBe false
+        }
+
+        @Test
+        fun `notifies owner when parking lot becomes full`() {
+            val owner = ParkingLotOwner.with("")
+            val parkingLot = parkingLot(capacity = 1, owner = owner)
+            val car = car()
+
+            parkingLot.park(car)
+
+            owner.isParkingLotFull() shouldBe true
+        }
+
+        @Test
+        fun `withdraws notice when parking lot has space available`() {
+            val owner = ParkingLotOwner.with("")
+            val parkingLot = parkingLot(capacity = 1, owner = owner)
+            val car = car()
+
+            parkingLot.park(car)
+            parkingLot.unpark(car)
+
+            owner.isParkingLotFull() shouldBe false
         }
 
         @Test
