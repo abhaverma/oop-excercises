@@ -36,7 +36,18 @@ class ParkingLotTest {
         }
 
         @Test
-        fun `withdraws notice when parking lot has space available`() {
+        fun `notifies road traffic cop when parking lot becomes full`() {
+            val cop = RoadTrafficCop.with("")
+            val parkingLot = parkingLot(capacity = 1, cop = cop)
+            val car = car()
+
+            parkingLot.park(car)
+
+            cop.isParkingLotFull() shouldBe true
+        }
+
+        @Test
+        fun `withdraws notice to owner when parking lot has space available`() {
             val owner = ParkingLotOwner.with("")
             val parkingLot = parkingLot(capacity = 1, owner = owner)
             val car = car()
@@ -45,6 +56,18 @@ class ParkingLotTest {
             parkingLot.unpark(car)
 
             owner.isParkingLotFull() shouldBe false
+        }
+
+        @Test
+        fun `withdraws notice to road traffic cop when parking lot has space available`() {
+            val cop = RoadTrafficCop.with("")
+            val parkingLot = parkingLot(capacity = 1, cop = cop)
+            val car = car()
+
+            parkingLot.park(car)
+            parkingLot.unpark(car)
+
+            cop.isParkingLotFull() shouldBe false
         }
 
         @Test
