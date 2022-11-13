@@ -56,7 +56,6 @@ class ParkingLotTest {
         }
     }
 
-
     @Nested
     inner class Park {
 
@@ -98,6 +97,16 @@ class ParkingLotTest {
                 isParkedCar1 shouldBe true
                 isParkedCar2 shouldBe true
             }
+        }
+
+        @Test
+        fun `does not park same car twice`() {
+            val car1 = car()
+            val parkingLot = parkingLot()
+            parkingLot.park(car1)
+            parkingLot.park(car1)
+
+            parkingLot.parkedCount() shouldBe 1
         }
 
         @Test

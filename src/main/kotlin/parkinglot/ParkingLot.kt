@@ -4,6 +4,7 @@ class ParkingLot private constructor(private val capacity: Int) {
     private val cars = mutableListOf<Car>()
 
     fun park(car: Car) {
+        if (cars.contains(car)) return
         if (capacity == parkedCount()) return
         cars.add(car)
     }
